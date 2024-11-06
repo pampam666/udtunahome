@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Bento Layout with Advanced Hover Effect</title>
+    <style>
+        /* layout */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background: #F8FCFF;
+        }
+        .bento-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* General styling for bento-child elements */
+        .bento-child1, .bento-child2, .bento-child3, .bento-child4 {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 20px;
+            border-radius: 20px;
+            color: #FFF;
+            background-size: cover;
+            background-position: center;
+            min-width: 260px;
+            flex: 1 1 300px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.5s ease; /* Zoom effect */
+        }
+        
+        /* Gradient overlay */
+        .bento-child1::before,
+        .bento-child2::before,
+        .bento-child3::before,
+        .bento-child4::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 20px;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.55) 100%);
+            opacity: 0; /* Initial opacity for gradient overlay */
+            transition: opacity 0.5s ease; /* Smooth transition */
+            z-index: 1; /* Ensure it appears above the background image */
+        }
+
+        /* Text opacity */
+        .heading, .text, .harga {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 2; /* Ensure text appears above the gradient */
+            position: relative;
+        }
+
+        /* Hover effects */
+        .bento-child1:hover,
+        .bento-child2:hover,
+        .bento-child3:hover,
+        .bento-child4:hover {
+            transform: scale(1.05); /* Slight zoom on hover */
+        }
+        
+        .bento-child1:hover::before,
+        .bento-child2:hover::before,
+        .bento-child3:hover::before,
+        .bento-child4:hover::before {
+            opacity: 1; /* Fade in gradient overlay on hover */
+        }
+
+        .bento-child1:hover .heading,
+        .bento-child1:hover .text,
+        .bento-child1:hover .harga,
+        .bento-child2:hover .heading,
+        .bento-child2:hover .text,
+        .bento-child2:hover .harga,
+        .bento-child3:hover .heading,
+        .bento-child3:hover .text,
+        .bento-child3:hover .harga,
+        .bento-child4:hover .heading,
+        .bento-child4:hover .text,
+        .bento-child4:hover .harga {
+            opacity: 1; /* Fade in text on hover */
+        }
+
+        /* Specific background images for each card */
+        .bento-child1 {
+            background-image: url(ikan-kuwe.png);
+        }
+        .bento-child2 {
+            background-image: url(ikan-tengiri.png);
+        }
+        .bento-child3 {
+            background-image: url(ikan-tongkol.png);
+        }
+        .bento-child4 {
+            background-image: url(ikan-lumedang.png);
+        }
+
+        /* Heading and Text Styling */
+        .heading {
+            font-family: Aclonica, sans-serif;
+            font-size: 1.8rem;
+            margin: 0;
+        }
+        .text {
+            font-size: 1rem;
+            margin: 10px 0;
+            max-width: 350px;
+        }
+        .harga {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .bento-grid {
+                gap: 10px;
+            }
+            .heading {
+                font-size: 1.5rem;
+            }
+            .text {
+                font-size: 0.9rem;
+            }
+            .harga {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .bento-grid {
+                padding: 15px;
+            }
+            .heading {
+                font-size: 1.3rem;
+            }
+            .text {
+                font-size: 0.85rem;
+            }
+            .harga {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .bento-grid {
+                flex-direction: column;
+                padding: 10px;
+            }
+            .bento-child1, .bento-child2, .bento-child3, .bento-child4 {
+                flex: 1 1 100%;
+            }
+            .heading {
+                font-size: 1.2rem;
+            }
+            .text {
+                font-size: 0.8rem;
+            }
+            .harga {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="bento-grid">
+        <div class="bento-child1">
+            <h1 class="heading">Ikan Kuwe</h1>
+            <p class="text">Ikan kuwe tinggi protein dan mineral, seperti fosfor dan kalsium, yang penting untuk kekuatan tulang dan gigi. Omega-3 yang terdapat dalam ikan ini membantu menurunkan kolesterol jahat, mendukung kesehatan jantung, dan meningkatkan fungsi otak</p>
+            <p class="harga">Rp 35.000/Kg</p>
+        </div>
+        <div class="bento-child2">
+            <h1 class="heading">Ikan Tengiri</h1>
+            <p class="text">Ikan tengiri merupakan sumber protein berkualitas tinggi yang mudah dicerna tubuh, serta kaya akan omega-3 yang baik untuk kesehatan jantung dan mencegah hipertensi. Ikan ini juga mengandung vitamin B12, yang penting untuk menjaga kesehatan sel darah merah dan meningkatkan energi.</p>
+            <p class="harga">Rp 35.000/Kg</p>
+        </div>
+        <div class="bento-child3">
+            <h1 class="heading">Ikan Tongkol</h1>
+            <p class="text">Ikan tongkol pindang kaya akan protein dan omega-3, bermanfaat bagi kesehatan jantung dan menurunkan risiko kardiovaskular. Kandungan vitamin D dan kalsiumnya menjaga kesehatan tulang dan meningkatkan daya tahan tubuh</p>
+            <p class="harga">Rp 68.000/Kg</p>
+        </div>
+        <div class="bento-child4">
+            <h1 class="heading">Ikan Lamedang</h1>
+            <p class="text">Ikan lemadang kaya akan protein dan asam lemak omega-3 yang baik untuk kesehatan jantung serta mengurangi peradangan. Kandungan vitaminnya, termasuk vitamin B kompleks, membantu menjaga fungsi saraf dan meningkatkan energi tubuh.</p>
+            <p class="harga">Rp 32.000/Kg</p>
+        </div>
+    </main>
+</body>
+</html>
